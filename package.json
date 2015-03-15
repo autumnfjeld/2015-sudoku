@@ -8,7 +8,8 @@
     "build:js": "browserify app/javascript/main.js > public/main.js",
     "build:css": "sass app/style/main.scss public/main.css",
     "build:html": "jade app/views/index.jade -o public",
-    "build": "npm run build:js && npm run build:css && npm run build:html"
+    "build": "npm run build:js && npm run build:css && npm run build:html",
+    "start": "ws -d public"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,6 @@
     "sass": "^0.5.0",
     "jshint": "^2.6.3",
     "autoprefixer": "^5.1.0",
-    "node-sass": "^3.0.0-pre"
+    "local-web-server": "^0.5.17"
   }
 }
