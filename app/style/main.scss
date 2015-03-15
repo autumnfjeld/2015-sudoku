@@ -1,0 +1,13 @@
+$color-1: hsla(278, 100%, 26%, 1);
+
+* { font-family: 'Open Sans', sans-serif; }
+
+body {
+  background-color: $color-1;
+}
+
+.container {
+  p {
+    color: blue;
+  }
+}
