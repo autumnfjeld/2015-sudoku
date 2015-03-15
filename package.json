@@ -1,0 +1,25 @@
+{
+  "name": "2015_sudoku",
+  "version": "1.0.0beta",
+  "description": "Sudoku game: demonstraing modular, performant Javascript code with well-structure, flexible CSS.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: ToDo: Set up tests\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/autumnfjeld/2015-sudoku.git"
+  },
+  "author": "Autumn Fjeld <autumn@autumn.buzz>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/autumnfjeld/2015-sudoku/issues"
+  },
+  "homepage": "https://github.com/autumnfjeld/2015-sudoku",
+  "devDependencies": {
+    "browserify": "^9.0.3",
+    "sass": "^0.5.0",
+    "jshint": "^2.6.3",
+    "autoprefixer": "^5.1.0"
+  }
+}
