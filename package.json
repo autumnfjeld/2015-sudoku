@@ -9,7 +9,7 @@
     "build:css": "sass app/style/main.scss public/main.css",
     "build:html": "jade app/views/index.jade -o public",
     "build": "npm run build:js && npm run build:css && npm run build:html",
-    "start": "ws -d public"
+    "start": "ws --port 8088 -d public && npm run ngrok 8088"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,7 @@
     "sass": "^0.5.0",
     "jshint": "^2.6.3",
     "autoprefixer": "^5.1.0",
-    "local-web-server": "^0.5.17"
+    "local-web-server": "^0.5.17",
+    "ngrok": "^0.1.99"
   }
 }
