@@ -2,4 +2,15 @@ extends ./layout.jade
 
 block content
   div.container
-    p Howdy
+    h1 Sudoku Bubble
+    
+    div.sudoku-bubble
+      table
+        tbody
+          each row in [1,2,3]
+            tr
+              each col in [1,2,3]
+                th
+                  input(class='box1 cell-#{row}#{col}')
+    div.footer
+      p Created by Autumn Fjeld
