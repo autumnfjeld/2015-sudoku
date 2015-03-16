@@ -28,5 +28,9 @@
     "autoprefixer": "^5.1.0",
     "local-web-server": "^0.5.17",
     "ngrok": "^0.1.99"
+  },
+  "dependencies": {
+    "jquery": "^2.1.3"
   }
 }
+
