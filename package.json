@@ -2,35 +2,46 @@
   "name": "2015_sudoku",
   "version": "1.0.0beta",
   "description": "Sudoku game: demonstraing modular, performant Javascript code with well-structure, flexible CSS.",
-  "main": "main.js",
-  "scripts": {
-    "test": "echo \"Error: ToDo: Set up tests\" && exit 1",
-    "build:js": "browserify app/javascript/main.js > public/main.js",
-    "build:css": "sass app/style/main.scss public/main.css",
-    "build:html": "jade app/views/index.jade -o public",
-    "build": "npm run build:js && npm run build:css && npm run build:html",
-    "start": "ws --port 8088 -d public && npm run ngrok 8088"
-  },
+  "author": "Autumn Fjeld <autumn@autumn.buzz>",
+  "license": "ISC",
   "repository": {
     "type": "git",
     "url": "https://github.com/autumnfjeld/2015-sudoku.git"
   },
-  "author": "Autumn Fjeld <autumn@autumn.buzz>",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/autumnfjeld/2015-sudoku/issues"
   },
   "homepage": "https://github.com/autumnfjeld/2015-sudoku",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: ToDo: Set up tests\" && exit 1",
+    "build:js": "browserify app/javascript/main.js > public/main.js",
+    "build:sass": "sass app/style/main.scss public/main.css",
+    "build:jade": "jade app/views/index.jade -o public",
+    "build": "npm run build:js && npm run build:sass && npm run build:jade",
+    "watch:sass": "sass --watch app/style:public",
+    "watch:jade": "jade -w app/views/index.jade -o public",
+    "watch:js": "watchify app/javascript/main.js -o public/main.js",
+    "start": "ws --port 8088 -d public && npm run ngrok 8088"
+  },
+  "browser":{
+    "jquery": "./node_modules/jquery/dist/jquery.js"
+  },
+  "browserify-shim": {
+    "./node_modules/jquery/dist/jquery.js": { "exports": "$" }
+  },
   "devDependencies": {
     "browserify": "^9.0.3",
     "sass": "^0.5.0",
     "jshint": "^2.6.3",
     "autoprefixer": "^5.1.0",
     "local-web-server": "^0.5.17",
-    "ngrok": "^0.1.99"
+    "ngrok": "^0.1.99",
+    "watchify": "^2.4.0",
+    "browserify-shim": "^3.8.3"
   },
   "dependencies": {
-    "jquery": "^2.1.3"
+    "jquery": "^2.1.3",
+    "underscore": "^1.8.2"
   }
 }
-
