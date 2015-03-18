@@ -25,26 +25,38 @@ body {
 }
 
 $bubble-size: 600px;
-.sudoku-bubble {
+
+.sudoku-box {
   display: flex;
-  justify-content: space-around;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-content: center;
   align-items: center;
   max-width: $sm-width;
   width: $bubble-size;
   height: $bubble-size;
   border-radius: $bubble-size/2;
   // background-color: $color-sudoku-bubble;
+  .bt {
+    box-shadow: inset 1px 1px 1px 2px hsl(252,49%, 54%);
+    outline: 1px solid hsl(0, 0%, 30%);
+  }
   th {
-    background-color: hsl(268, 33%, 58%);
-    border: 1px solid hsl(0,0,80%);
+    text-align: center;
+    vertical-align: middel;
   }
   input {
     width: $bubble-size*.1;
     height: $bubble-size*.1;
-    border-radius: 10px;
+    border-radius: $bubble-size*.1*.6;
     min-width: 50px;
     min-height: 50px;
     padding: 5px;
     font-size: 2em;
+    text-align: center;
   }
 }
+
+
+
+
