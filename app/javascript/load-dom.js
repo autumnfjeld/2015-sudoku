@@ -22,12 +22,13 @@ Controller.prototype.initDom = function(board){
    $('.cell').each(function(i){
       //Initalize dom with sudoku values
       $(this).val(board[i].value);
+      //$(this).val(i);  //use this to get a visual of the array assignment
       //add listener to dom node
-      var classList = $(this)[0].className;
-      $(this).change(function(stuff){
-        console.log('You changed cell', stuff );
-        emitter();
-      });
+      // var classList = $(this)[0].className;
+      // $(this).change(function(stuff){
+      //   console.log('You changed cell', stuff );
+      //   emitter();
+      // });
   });
 
    //Add event Handler to done button
@@ -45,7 +46,7 @@ Controller.prototype.getValues = function(){
   $('.cell').each(function(i){
       self.boardValues[i] = $(this).val();
   });
-  console.log('got values', this.boardValues);
-  this.events.checkBoard();             //this should be separated into clearer event handling or emiter..
+  // console.log('got values', this.boardValues);
+  this.events.checkBoard(this.boardValues);             //this should be separated into clearer event handling or emiter..
 };
 

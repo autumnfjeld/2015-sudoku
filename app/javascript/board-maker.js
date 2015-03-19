@@ -13,7 +13,7 @@ var wikiBoard = [[5,3,0, 0,7,0, 0,0,0],
                ];
 
 function BoardMaker(){
-    this.board = wikiBoard;
+    this.board = wikiBoard;       //in absence of board generator
     this.boardMap = makeMap(wikiBoard);
     this.reset;
     this.boardMap;
@@ -25,10 +25,36 @@ BoardMaker.prototype.makeBoard = function (){
   //todo: board generator
 };
 
-BoardMaker.prototype.checkBoard = function(cell, value){
-  console.log('in' , this, ' update');
-  // this.boardMap[cell] = value;
+BoardMaker.prototype.checkBoard = function(cellValues){
+  // console.log(cellValues[0]);
+  //  _.mapObject(this.boardMap, function(val, key, obj){
+  //   obj[key].value = cellValues[key];
+  //  }); 
+  //  console.log('mapped', this.boardMap[0]);
+   checkrows();
+
+   //Easy peasy 
+   function checkrows(){
+    var checker;
+    var row = 1;
+    for (var i = 0; i < 81; i+=9) {    //row iterator
+      checker = {};
+      for (var j = i; j < i+9; j++) {  //col iterator
+        checker[cellValues[j]] = 1;
+      }
+      console.log(checker);
+      if (_.size(checker) < 9) {
+        console.log('row', row, 'LOSER');
+        i=100;
+      }
+      row++;
+    }
+   }
 };
+
+
+
+//////////////   Helper functions ///////////////////////
 
 //provides easy access to coordinates and DOM iteration
 function makeMap (valueMatrix) {
@@ -47,9 +73,7 @@ function makeMap (valueMatrix) {
   return boardMap;
 };
 
-
-
-//Helper functions
+//Assign box number to each cell
 function box(row, col){
   if (row < 4 && col < 4) return 1;
   if (col < 4) {
