@@ -3,23 +3,18 @@
 
 var $ = require('jquery');
 var BoardMaker = require('./board-maker.js');
-var wikiBoard = require('./wiki-board.js');
-var loadDom = require('./load-dom.js');
+var Controller = require('./load-dom.js');
 
 module.exports = {
   init: function (){
-    console.log('Woo Hoo Starting');
-    //start everything
     var gameBoard = new BoardMaker();
-    gameBoard.board = wikiBoard;
-    // console.log('g', gameBoard.board);
-    loadDom();
-
-   
+    var gameController = new Controller();
+    gameController.initDom(gameBoard.boardMap);
+    gameController.addEvents('checkBoard', gameBoard.checkBoard.bind(gameBoard));
   }
 };
 
-//WHAT THE FUCK
+
 $(function(){
   module.exports.init();
 });
