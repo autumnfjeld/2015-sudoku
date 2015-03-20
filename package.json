@@ -14,7 +14,7 @@
   "homepage": "https://github.com/autumnfjeld/2015-sudoku",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: ToDo: Set up tests\" && exit 1",
+    "test": "jasmine",
     "build:js": "browserify app/javascript/main.js | > public/main.js",
     "build:css": "sass app/style/main.scss app/style/main.css | autoprefixer -b 'last 2 versions' -d public app/style/main.css",
     "build:jade": "jade app/views/index.jade -o public",
@@ -24,11 +24,13 @@
     "watch:js": "watchify app/javascript/main.js -o public/main.js",
     "start": "ws --port 8088 -d public && npm run ngrok 8088"
   },
-  "browser":{
+  "browser": {
     "jquery": "./node_modules/jquery/dist/jquery.js"
   },
   "browserify-shim": {
-    "./node_modules/jquery/dist/jquery.js": { "exports": "$" }
+    "./node_modules/jquery/dist/jquery.js": {
+      "exports": "$"
+    }
   },
   "devDependencies": {
     "browserify": "^9.0.3",
@@ -42,6 +44,7 @@
   },
   "dependencies": {
     "jquery": "^2.1.3",
-    "underscore": "^1.8.2"
+    "underscore": "^1.8.2",
+    "jasmine": "^2.2.1"
   }
 }
