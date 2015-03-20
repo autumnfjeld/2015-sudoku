@@ -1,5 +1,5 @@
 var _ = require('underscore');
-module.exports = BoardMaker;
+module.exports = BoardModel;
 
 var wikiBoard = [[5,3,0, 0,7,0, 0,0,0],
                  [6,0,0, 1,9,5, 0,0,0],
@@ -12,29 +12,35 @@ var wikiBoard = [[5,3,0, 0,7,0, 0,0,0],
                  [0,0,0, 0,8,0, 0,7,9]
                ];
 
-function BoardMaker(){
+function BoardModel(){
     this.board = wikiBoard;       //in absence of board generator
     this.boardMap = makeMap(wikiBoard);
     this.reset;
     this.boardMap;
+
 };
 
-BoardMaker.prototype.makeBoard = function (){
+BoardModel.prototype.addListener = function (func){
+  this.emit = func;
+}
+
+
+BoardModel.prototype.makeBoard = function (){
   this.board = _.range(_.range(0));
   console.log('Board made', this.board);
   //todo: board generator
 };
 
-BoardMaker.prototype.checkBoard = function(cellValues){
+BoardModel.prototype.checkBoard = function(cellValues){
   // console.log(cellValues[0]);
   //  _.mapObject(this.boardMap, function(val, key, obj){
   //   obj[key].value = cellValues[key];
   //  }); 
   //  console.log('mapped', this.boardMap[0]);
-   checkrows();
+   checkRows();
 
    //Easy peasy 
-   function checkrows(){
+   function checkRows(){
     var checker;
     var row = 1;
     for (var i = 0; i < 81; i+=9) {    //row iterator
@@ -50,6 +56,12 @@ BoardMaker.prototype.checkBoard = function(cellValues){
       row++;
     }
    }
+
+   function checkColumns(){
+
+   }
+
+   this.emit('result', 'winnnnner');
 };
 
 
