@@ -4,4 +4,7 @@ npm-debug.log
 project-notes.txt
 node_modules
 public
+app/style/main.css
+app/style/main.css.map
+
 
