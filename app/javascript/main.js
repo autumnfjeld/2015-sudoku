@@ -12,7 +12,7 @@ module.exports = {
     var gameBoard = new Board();
     var view = new View();
 
-    view.initDom(gameBoard.boardMap);
+    view.initDom(gameBoard.board);
     
     //Hook up EventController in modules
     view.addListener(controller.listener.bind(controller));
@@ -21,7 +21,8 @@ module.exports = {
     // Register events and handlers
     controller.addEventHandlers({
       'done'    : gameBoard.checkBoard.bind(gameBoard),
-      'result'  : view.showResult.bind(view)  
+      'result'  : view.showResult.bind(view),
+      'reset'   : view.reset(gameBoard.board).bind(view); 
     }); 
   }
 };
