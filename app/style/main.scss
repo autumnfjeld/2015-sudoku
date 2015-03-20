@@ -1,14 +1,24 @@
+//ToDo: Color theme organization!!!
+// $color-background:
+// $color-accent-dark:
+// $color-accent-light:
+// $color-complement:
+// $color-grey:
+// $color-white:
+// $color-title-text:
+
 $color-1: hsla(278, 100%, 26%, 1);
 $color-2: hsla(285, 28%, 38%, 1);
 $color-sudoku-bubble: hsl(268, 33%, 58%);
 $color-inner-bubble: hsl(252,49%, 54%);
 $color-accent: hsl(252,49%, 54%);
-$color-white-text: hsla(0,0,0,.2);
+$color-white-text: hsl(0,0,80%);
+$color-happy: hsla(238, 86%, 83%, 1);
 $xs-width: 320px;
 $sm-width: 600px;
 $md-width: 960px;
 $lg-width: 1200px;
-$xs-board: 280px;
+$xs-board: 260px;
 $sm-board: 320px;
 $board:   600px;
 
@@ -44,21 +54,22 @@ body {
 }
 
 .header {
-  height: 100px;
-  h1 { 
+  h1 {
+    margin: 5px; 
     font-size: 3em;
     color:$color-white-text}
 }
 
-$bubble-size: 600px;
-.content {
-  display: flex;
-  flex-flow: column;
-  justify-content: space-between;
-  // align-content: center;
-  align-items: center;
+.result {
+  h2 {
+    color: $color-happy;
+    text-shadow: 2px 2px 2px hsl(60,1%,9%);}
 }
 
+$bubble-size: 600px;
+.content {
+  flex-basis: 60%;
+}
 .sudoku-box {
   max-width: $board;
   width: $board;
@@ -74,6 +85,7 @@ $bubble-size: 600px;
   border-radius: $bubble-size/2;
   // background-color: $color-sudoku-bubble;
   .bt {
+    border-spacing: 0;
     box-shadow: inset 1px 1px 1px 2px hsl(252,49%, 54%);
     outline: 1px solid hsl(0, 0%, 30%);
   }
@@ -99,16 +111,17 @@ $bubble-size: 600px;
       width: $xs-board/10;
       height: $xs-board/10;
       border-radius: $xs-board/10*.5;
+      font-size:1.8em;
     }
-    min-width: 30px;
-    min-height: 30px;
+    min-width: 24px;
+    min-height: 24px;
     padding: 5px;
     text-align: center;
   }
 }
 
 .button-box {
-  width: 50%;
+  width: 70%;
   display: flex;
   flex-flow: row;
   justify-content: space-around;
@@ -120,10 +133,15 @@ $bubble-size: 600px;
   $height: 50px;
   height: $height;
   width: 3*$height;
+  @media( max-width: $xs-width){
+    width: 70px;
+    height: 30px;
+    border-radius: 10px;
+  }
   border-radius: $height/2;
   background-color: hsla(285, 18%, 51%, 1);
   color: white;
-  font-size: 24px;
+  font-size: 1.2em;
   &:hover {
     box-shadow: 0px 0px 5px #fff;
   }
@@ -136,7 +154,6 @@ $bubble-size: 600px;
 }
 
 .footer {
-  height: 50px;
-  margin: 30px 0;
+  padding-bottom: 10px;
   text-align: center; }
 
