@@ -15,14 +15,15 @@
   "main": "main.js",
   "scripts": {
     "test": "jasmine",
-    "build:js": "browserify app/javascript/main.js | > public/main.js",
+    "build:js": "browserify app/javascript/main.js > public/main.js",
     "build:css": "sass app/style/main.scss app/style/main.css | autoprefixer -b 'last 2 versions' -d public app/style/main.css",
     "build:jade": "jade app/views/index.jade -o public",
     "build": "npm run build:js && npm run build:css && npm run build:jade",
     "watch:sass": "sass --watch app/style",
     "watch:jade": "jade -w app/views/index.jade -o public",
     "watch:js": "watchify app/javascript/main.js -o public/main.js",
-    "start": "ws --port 8088 -d public && npm run ngrok 8088"
+    "start": "ws --port 8088 -d public && npm run ngrok 8088",
+    "deploy": "scp public/* autumnfj@www.autumnfjeld.com:/home2/autumnfj/public_html/sudoku"
   },
   "browser": {
     "jquery": "./node_modules/jquery/dist/jquery.js"
