@@ -35,9 +35,11 @@ BoardModel.prototype.reset = function(){
 }
 
 BoardModel.prototype.checkBoard = function(cellValues){
-   checkRows();
+  checkRows();
+  checkColumns();
+  checkBoxes();
 
-   function checkRows(){
+  function checkRows(){
     var checker;
     var row = 1;
     for (var i = 0; i < 81; i+=9) {    //row iterator
@@ -54,15 +56,29 @@ BoardModel.prototype.checkBoard = function(cellValues){
     }
    }
 
-   function checkColumns(){
+  function checkColumns(){
+    var checker;
+    var col;
+    for (var i = 0; i < 10; i++ ){ //col iterator
+      checker = {};
+      col = i;
+      for (var j = 0; j < 81; j+=9){
+        console.log('cell by col', i+j, cellValues[i+j]);
+        checker[cellValues[i+j]] = 1;
+      }
+      if (_.size(checker) < 9) {
+        console.log('col', col, 'LOSER');
+        i=100;
+      }
+    }      
+  }
 
-   }
+  function checkBoxes(){
+    console.log('Coming soon: box checking!')
 
-   function checkBoxes(){
+  }
 
-   }
-
-   this.emit('result', 'winnnnner');
+  this.emit('result', 'winnnnner');
 };
 
 
