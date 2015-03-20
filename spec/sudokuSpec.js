@@ -1,7 +1,7 @@
 //will need jasmine-guery to do tests
 
 describe("Player", function() {
-  var $ = require('jquery');
+  // var $ = require('jquery');
   var Board = require('../app/javascript/board-model');
   var View = require('../app/javascript/view');
   var EventController = require('../app/javascript/event-controller.js')
