@@ -6,11 +6,11 @@ var solution = [ 5,3,4, 6,7,8, 9,1,2,
                  6,7,2, 1,9,5, 3,4,8,
                  1,9,8, 3,4,2, 5,6,7,
                  8,5,9, 7,6,1, 0,0,3,
-                 4,0,0, 8,0,3, 0,0,1,
-                 7,0,0, 0,2,0, 0,0,6,
+                 4,2,0, 8,0,3, 0,0,1,
+                 7,1,0, 0,2,0, 0,0,6,
                  9,6,0, 0,0,0, 2,8,0,
-                 2,0,0, 4,1,9, 0,0,5,
-                 3,0,0, 0,8,0, 0,7,9
+                 2,8,0, 4,1,9, 0,0,5,
+                 3,4,0, 0,8,0, 0,7,9
                ];
 
 function View(){
@@ -24,10 +24,8 @@ View.prototype.addListener = function(func){
 }
 
 View.prototype.initDom = function(board){
-  console.log('in loadDom');
   var boundGetValues = this.getValues;
   var self = this;
-  console.log('board',board);
   //jQuery loops thru cells in row by row, traversing left to right
    $('.cell').each(function(i){
       //Initalize dom with sudoku values, don't add zeros
@@ -57,6 +55,10 @@ View.prototype.getValues = function(){
 };
 
 View.prototype.showResult = function(result){
+  //add visual notification
+  var resultText;
+  if (result === 'win') resultText = 'Woo Hoo. You rock!';
+  $('.result').append('<h2>'+ resultText + '</h2>');
   console.log('will show result', result);
 };
 

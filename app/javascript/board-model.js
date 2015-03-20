@@ -63,7 +63,7 @@ BoardModel.prototype.checkBoard = function(cellValues){
       checker = {};
       col = i;
       for (var j = 0; j < 81; j+=9){
-        console.log('cell by col', i+j, cellValues[i+j]);
+        // console.log('cell by col', i+j, cellValues[i+j]);
         checker[cellValues[i+j]] = 1;
       }
       if (_.size(checker) < 9) {
@@ -77,8 +77,8 @@ BoardModel.prototype.checkBoard = function(cellValues){
     console.log('Coming soon: box checking!')
 
   }
-
-  this.emit('result', 'winnnnner');
+  //todo finish checking and send either win or lose
+  this.emit('result', 'win');
 };
 
 
