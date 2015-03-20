@@ -15,11 +15,11 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: ToDo: Set up tests\" && exit 1",
-    "build:js": "browserify app/javascript/main.js > public/main.js",
-    "build:sass": "sass app/style/main.scss public/main.css",
+    "build:js": "browserify app/javascript/main.js | > public/main.js",
+    "build:css": "sass app/style/main.scss app/style/main.css | autoprefixer -b 'last 2 versions' -d public app/style/main.css",
     "build:jade": "jade app/views/index.jade -o public",
-    "build": "npm run build:js && npm run build:sass && npm run build:jade",
-    "watch:sass": "sass --watch app/style:public",
+    "build": "npm run build:js && npm run build:css && npm run build:jade",
+    "watch:sass": "sass --watch app/style",
     "watch:jade": "jade -w app/views/index.jade -o public",
     "watch:js": "watchify app/javascript/main.js -o public/main.js",
     "start": "ws --port 8088 -d public && npm run ngrok 8088"
