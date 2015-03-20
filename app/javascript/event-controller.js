@@ -16,7 +16,7 @@ EventController.prototype.addEventHandlers = function(handlers){
   for (var prop in handlers){
     this.eventHandlers[prop] = handlers[prop];
   }
-  console.log('loaded handlers', this.eventHandlers);
+  // console.log('loaded handlers', this.eventHandlers);
 };
 
 

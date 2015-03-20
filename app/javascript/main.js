@@ -22,7 +22,7 @@ module.exports = {
     controller.addEventHandlers({
       'done'    : gameBoard.checkBoard.bind(gameBoard),
       'result'  : view.showResult.bind(view),
-      'reset'   : view.reset(gameBoard.board).bind(view); 
+      // 'reset'   : todo
     }); 
   }
 };

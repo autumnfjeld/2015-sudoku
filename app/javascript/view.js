@@ -27,11 +27,11 @@ View.prototype.initDom = function(board){
   console.log('in loadDom');
   var boundGetValues = this.getValues;
   var self = this;
-
+  console.log('board',board);
   //jQuery loops thru cells in row by row, traversing left to right
    $('.cell').each(function(i){
-      //Initalize dom with sudoku values
-      $(this).val(board[i].value);
+      //Initalize dom with sudoku values, don't add zeros
+      if (board[i]) $(this).val(board[i]);
       //$(this).val(i);     //use this to get a visual of the array assignment
   });
 
