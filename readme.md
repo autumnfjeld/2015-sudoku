@@ -32,5 +32,6 @@ Something fun to demonstrate an ability to architect modular, performant Javascr
   * Wanted to see how sophisticated a build / watch system could be done via npm scripts.  Think more could be done.  Wish list (i.e. need to research to determine feasibility):
   ..* automated watching for scss, jade and js in one command
   * Next time: spend more time planning architecture on paper before coding
+  * Misguided logic led me to start writing board checking functions, when instead I should have gone straigt to creating a board generator that would create both the solution and the starting board.   
 
 
