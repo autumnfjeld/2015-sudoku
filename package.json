@@ -35,14 +35,15 @@
     }
   },
   "devDependencies": {
-    "browserify": "^9.0.3",
-    "sass": "^0.5.0",
-    "jshint": "^2.6.3",
     "autoprefixer": "^5.1.0",
+    "browserify": "^9.0.3",
+    "browserify-shim": "^3.8.3",
+    "jade": "^1.9.2",
+    "jshint": "^2.6.3",
     "local-web-server": "^0.5.17",
     "ngrok": "^0.1.99",
-    "watchify": "^2.4.0",
-    "browserify-shim": "^3.8.3"
+    "sass": "^0.5.0",
+    "watchify": "^2.4.0"
   },
   "dependencies": {
     "jquery": "^2.1.3",
