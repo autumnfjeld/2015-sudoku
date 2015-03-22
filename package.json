@@ -16,7 +16,7 @@
   "scripts": {
     "test": "jasmine",
     "build:js":   "browserify app/javascript/main.js > public/main.js",
-    "build:css":  "sass app/style/main.scss app/style/main.css | autoprefixer -b 'last 2 versions' -d public app/style/main.css",
+    "build:css":  "sass app/style/main.scss app/style/main.css && autoprefixer -b 'last 2 versions' -d public app/style/main.css",
     "build:jade": "jade app/views/index.jade -o public",
     "build":      "mkdir -p public && npm run build:js && npm run build:css && npm run build:jade",
     "watch:sass": "sass --watch app/style:public",
