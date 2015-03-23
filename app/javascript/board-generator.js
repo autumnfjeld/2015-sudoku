@@ -38,10 +38,8 @@ function arrayToMatrix(array){
 }
 
 function BoardGen(){
-  // this.board = [['hi']];
   this.wikiBoard = wikiBoard;
   this.solution;
-  // this.board = solution;
   this.sudokuArray = [];
   this.message = 'Nice job!';
 }
@@ -49,7 +47,6 @@ function BoardGen(){
 BoardGen.prototype.addListener = function (func){
   this.emit = func;
 }
-
 
 BoardGen.prototype.init = function (){
   console.log('init', this.board[0][0]);
@@ -79,7 +76,6 @@ BoardGen.prototype.seedBoard = function(){
     var col = randomNum('matrix');
     console.log('row', row, 'col',col);
     console.log(col, this.board[row][col]);
-    // var val  = randomNum();
     this.board[row][col] = i;
   }
   console.log('seeded', this.board);
@@ -112,8 +108,10 @@ BoardGen.prototype.matrixToArray = function(matrix){
   console.log('length of array 81?', this.sudokuArray.length);
 };
 
+/*TODO
+regex to check that entry is digit from 1-9
+*/
 BoardGen.prototype.checkSolution= function(solutionMatrix){
-  // var self = this;
   console.log('solu chec', solutionMatrix[8][8]);
   this.solution = solutionMatrix;
   var rowChecker = {};
@@ -121,7 +119,6 @@ BoardGen.prototype.checkSolution= function(solutionMatrix){
   var colChecker = {};
   var boxNumber;
   var cellValue;
-  // var cellCounter = 1;
   for (var row = 0; row <9; row++) {
     checker = {};
     for (var col = 0; col <9; col++) {
@@ -129,13 +126,11 @@ BoardGen.prototype.checkSolution= function(solutionMatrix){
       rowChecker[cellValue] = 1;
       if(!colChecker.hasOwnProperty(col)) colChecker[col] = {};
       colChecker[col][cellValue] = 1; 
-      //do box checking
       boxNumber = box(row, col);
-      // console.log('row',row, 'col', col, 'box', boxNumber);
-      // console.log('check box 1', boxChecker[1]);
       if(!boxChecker.hasOwnProperty(boxNumber)) boxChecker[boxNumber] = {};
       boxChecker[boxNumber][cellValue] = 1;
     }
+
     //check that a row contains 1 thru 9
     if (_.size(rowChecker) < 9) {
       console.log('conflict in row', row);
@@ -166,8 +161,7 @@ BoardGen.prototype.checkSolution= function(solutionMatrix){
     } 
   }
 
-  // this.message = 'finished';
-    this.emit('result', this.message);
+  this.emit('result', this.message);
 };
 
 

@@ -49,18 +49,13 @@ View.prototype.resetBoard = function(){
 }
 
 View.prototype.getValues = function(){
-  console.log('collecting board values');
+  // console.log('collecting board values');
   boundBoardValues = this.boardValues;
-  var self = this;
-  var matrix = [[]];
   var counter;
   var row = 0;
   $('.cell').each(function(i){
-      // self.boardValues[i] = $(this).val();
       counter = i + 1; 
       col = i - row*9;
-      // console.log('mod', counter % 9);
-      // console.log('settin row', row, 'col', col, $(this).val());
       boundBoardValues[row][col] = $(this).val();
       if (counter % 9 === 0 && i < 80)  {
         row++;
@@ -73,9 +68,7 @@ View.prototype.getValues = function(){
 };
 
 View.prototype.showResult = function(result){
-  //add visual notification
-  // var resultText;
-  // if (result === 'win') resultText = 'Woo Hoo. You rock!';
+  //Todo - no dom reflow
   $('.result').empty();
   $('.result').append('<h2>'+ result + '</h2>');
   console.log('will show result', result);
@@ -89,8 +82,6 @@ View.prototype.test = function(){
     //need regex
     if (solution[i] !== 0) $(this).val(solution[i]);
   });
-  // this.getValues();
-  // this.emit('done', this.boardValues);
 };
 
 
