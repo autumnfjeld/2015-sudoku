@@ -29,12 +29,14 @@ View.prototype.initDom = function(board){
   //jQuery loops thru cells in row by row, traversing left to right
    $('.cell').each(function(i){
       //Initalize dom with sudoku values, don't add zeros
-      if (board[i]) $(this).val(board[i]);
-      //$(this).val(i);     //use this to get a visual of the array assignment
+      if (board[i] !== 0) $(this).val(board[i]);
+      // $(this).val(i+1);     //use this to get a visual of the array assignment
   });
 
    //Add event Handler to done button
    $('.btn-done').click(self.getValues.bind(self));
+
+   //Add event handler to reset button
 
    //Add event handler to test button
    $('.btn-test').click(function(){
@@ -47,11 +49,26 @@ View.prototype.resetBoard = function(){
 }
 
 View.prototype.getValues = function(){
+  console.log('collecting board values');
   var self = this;
+  var matrix = [[]];
+  var counter;
+  var row = 0;
   $('.cell').each(function(i){
-      self.boardValues[i] = $(this).val();
+      // self.boardValues[i] = $(this).val();
+      counter = i + 1; 
+      col = i - row*9;
+      // console.log('mod', counter % 9);
+      // console.log('settin row', row, 'col', col, $(this).val());
+      matrix[row][col] = $(this).val();
+      if (counter % 9 === 0 && i < 80)  {
+        row++;
+        matrix[row] = [];
+      }
   });
-  this.emit('done', this.boardValues);
+  console.log('matrix in dom', matrix)
+  // this.emit('done', this.boardValues);
+  this.emit('done', matrix);
 };
 
 View.prototype.showResult = function(result){

@@ -102,20 +102,8 @@ BoardGen.prototype.matrixToArray = function(matrix){
   console.log('length of array 81?', this.sudokuArray.length);
 };
 
-BoardGen.prototype.solve = function(){
-  for (row = 0; row <=9; row++ ){
-    for (col = 0; col <=9; col++ ){
-    }
-  }
-};
-
-// BoardGen.prototype.checkSolution = function(){
-//   this.rowConflict();
-//   this.colConflict();
-//   this.boxConflict():
-// };
-
-BoardGen.prototype.checkSolution= function(solutionMatix){
+BoardGen.prototype.checkSolution= function(solutionMatrix){
+  console.log('solu chec', solutionMatrix[8][8]);
   this.solution = solutionMatrix;
   var rowChecker = {};
   var boxChecker = {};  // { boxnum : {}}
@@ -127,7 +115,7 @@ BoardGen.prototype.checkSolution= function(solutionMatix){
     checker = {};
     for (var col = 0; col <9; col++) {
       cellValue = this.solution[row][col];
-      rowChecker[cellValue ] = 1;
+      rowChecker[cellValue] = 1;
       // console.log('check row', row, rowChecker);
       if(!colChecker.hasOwnProperty(col)) colChecker[col] = {};
       colChecker[col][cellValue] = 1; 
@@ -148,7 +136,7 @@ BoardGen.prototype.checkSolution= function(solutionMatix){
     //check that a box contains 1 thru 9
     if( (row+1) % 3 === 0 ){  // there is a complete box to check
       for (var boxNum in boxChecker) {
-        console.log('boxChecker, row', row, boxChecker);
+        // console.log('boxChecker, row', row, boxChecker);
         if(_.size(boxChecker[boxNum]) < 9 ) {
           console.log('conflict in box', boxNum, 'abort', boxChecker[boxNum]);
           // break;
@@ -162,10 +150,12 @@ BoardGen.prototype.checkSolution= function(solutionMatix){
   for (var col in colChecker){
     if(_.size(colChecker[col]) < 9) {
       console.log('conflict in col', col, 'abort!', colChecker[col]);
+      this.message = 'conflict in col' + col;
     } 
   }
 
   // this.message = 'finished';
+    this.emit('result', this.message);
 };
 
 

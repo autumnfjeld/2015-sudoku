@@ -2,28 +2,34 @@
 'use strict';
 
 var $ = require('jquery');
-var Board = require('./board-model.js');
+// var Board = require('./board-model.js');
 var View = require('./view.js');
 var EventController = require('./event-controller.js')
+var BoardModel = require('./board-generator.js')
 
 module.exports = {
   init: function (){
     var controller = new EventController();
-    var gameBoard = new Board();
+    var board = new BoardModel();
     var view = new View();
 
-    view.initDom(gameBoard.board);
+    // board.checkSolution();
+    // board.init();
+    view.initDom(board.testArray);
     
     //Hook up EventController in modules
     view.addListener(controller.listener.bind(controller));
-    gameBoard.addListener(controller.listener.bind(controller));
+    // gameBoard.addListener(controller.listener.bind(controller));
+    board.addListener(controller.listener.bind(controller));
     
     // Register events and handlers
     controller.addEventHandlers({
-      'done'    : gameBoard.checkBoard.bind(gameBoard),
-      'result'  : view.showResult.bind(view),
+      'done'    : board.checkSolution.bind(board),
+      'result'  : view.showResult.bind(view)
       // 'reset'   : todo
     }); 
+
+
   }
 };
 
