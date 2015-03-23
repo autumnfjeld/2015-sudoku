@@ -15,7 +15,7 @@ module.exports = {
 
     // board.checkSolution();
     // board.init();
-    view.initDom(board.testArray);
+    view.initDom(board.wikiBoard);
     
     //Hook up EventController in modules
     view.addListener(controller.listener.bind(controller));

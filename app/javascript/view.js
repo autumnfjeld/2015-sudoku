@@ -5,16 +5,16 @@ module.exports = View;
 var solution = [ 5,3,4, 6,7,8, 9,1,2,   
                  6,7,2, 1,9,5, 3,4,8,
                  1,9,8, 3,4,2, 5,6,7,
-                 8,5,9, 7,6,1, 0,0,3,
-                 4,2,0, 8,0,3, 0,0,1,
-                 7,1,0, 0,2,0, 0,0,6,
-                 9,6,0, 0,0,0, 2,8,0,
-                 2,8,0, 4,1,9, 0,0,5,
-                 3,4,0, 0,8,0, 0,7,9
+                 8,5,9, 7,6,1, 4,2,3,
+                 4,2,6, 8,5,3, 7,9,0,
+                 7,1,3, 9,2,4, 8,5,6,
+                 9,6,1, 5,3,7, 2,8,4,
+                 2,8,7, 4,1,9, 6,3,5,
+                 0,4,5, 2,8,6, 1,7,9
                ];
 
 function View(){
-  this.boardValues = [];
+  this.boardValues = [[]];
   this.testBoard = solution;
 }
 
@@ -50,6 +50,7 @@ View.prototype.resetBoard = function(){
 
 View.prototype.getValues = function(){
   console.log('collecting board values');
+  boundBoardValues = this.boardValues;
   var self = this;
   var matrix = [[]];
   var counter;
@@ -60,15 +61,15 @@ View.prototype.getValues = function(){
       col = i - row*9;
       // console.log('mod', counter % 9);
       // console.log('settin row', row, 'col', col, $(this).val());
-      matrix[row][col] = $(this).val();
+      boundBoardValues[row][col] = $(this).val();
       if (counter % 9 === 0 && i < 80)  {
         row++;
-        matrix[row] = [];
+        boundBoardValues[row] = [];
       }
   });
-  console.log('matrix in dom', matrix)
+  console.log('matrix in dom', boundBoardValues)
   // this.emit('done', this.boardValues);
-  this.emit('done', matrix);
+  this.emit('done', boundBoardValues);
 };
 
 View.prototype.showResult = function(result){
@@ -85,9 +86,11 @@ View.prototype.showResult = function(result){
 
 View.prototype.test = function(){
   $('.cell').each(function(i){
-    $(this).val(solution[i]);
+    //need regex
+    if (solution[i] !== 0) $(this).val(solution[i]);
   });
-  this.emit('done', this.boardValues);
+  // this.getValues();
+  // this.emit('done', this.boardValues);
 };
 
 
