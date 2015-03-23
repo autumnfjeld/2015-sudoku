@@ -73,10 +73,14 @@ View.prototype.getValues = function(){
 
 View.prototype.showResult = function(result){
   //add visual notification
-  var resultText;
-  if (result === 'win') resultText = 'Woo Hoo. You rock!';
-  $('.result').append('<h2>'+ resultText + '</h2>');
+  // var resultText;
+  // if (result === 'win') resultText = 'Woo Hoo. You rock!';
+  $('.result').empty();
+  $('.result').append('<h2>'+ result + '</h2>');
   console.log('will show result', result);
+  setTimeout(function(){
+    $('.result').empty();
+  },5000);
 };
 
 View.prototype.test = function(){

@@ -103,6 +103,7 @@ BoardGen.prototype.matrixToArray = function(matrix){
 };
 
 BoardGen.prototype.checkSolution= function(solutionMatrix){
+  // var self = this;
   console.log('solu chec', solutionMatrix[8][8]);
   this.solution = solutionMatrix;
   var rowChecker = {};
@@ -116,7 +117,6 @@ BoardGen.prototype.checkSolution= function(solutionMatrix){
     for (var col = 0; col <9; col++) {
       cellValue = this.solution[row][col];
       rowChecker[cellValue] = 1;
-      // console.log('check row', row, rowChecker);
       if(!colChecker.hasOwnProperty(col)) colChecker[col] = {};
       colChecker[col][cellValue] = 1; 
       //do box checking
@@ -129,7 +129,7 @@ BoardGen.prototype.checkSolution= function(solutionMatrix){
     //check that a row contains 1 thru 9
     if (_.size(rowChecker) < 9) {
       console.log('conflict in row', row);
-      this.message = 'conflict in row' + row;
+      this.message = 'Conflict in row ' + (parseInt(row)+1);
       i = 100;  //abort abort
     }
     
@@ -139,7 +139,8 @@ BoardGen.prototype.checkSolution= function(solutionMatrix){
         // console.log('boxChecker, row', row, boxChecker);
         if(_.size(boxChecker[boxNum]) < 9 ) {
           console.log('conflict in box', boxNum, 'abort', boxChecker[boxNum]);
-          // break;
+          this.message = 'Conflict in box ' + boxNum;
+          break;
         }
       }
       boxChecker = {};
@@ -150,7 +151,8 @@ BoardGen.prototype.checkSolution= function(solutionMatrix){
   for (var col in colChecker){
     if(_.size(colChecker[col]) < 9) {
       console.log('conflict in col', col, 'abort!', colChecker[col]);
-      this.message = 'conflict in col' + col;
+      this.message = 'Conflict in column ' + (parseInt(col)+1);
+      break;
     } 
   }
 
