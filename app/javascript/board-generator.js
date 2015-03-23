@@ -30,9 +30,16 @@ function arrayToMatrix(array){
 function BoardGen(){
   // this.board = [['hi']];
   this.testArray = solution;
+  this.solution;
   // this.board = solution;
   this.sudokuArray = [];
+  this.message = 'Nice job!';
 }
+
+BoardGen.prototype.addListener = function (func){
+  this.emit = func;
+}
+
 
 BoardGen.prototype.init = function (){
   console.log('init', this.board[0][0]);
@@ -108,31 +115,33 @@ BoardGen.prototype.solve = function(){
 //   this.boxConflict():
 // };
 
-BoardGen.prototype.checkConflicts = function(){
-  this.board = solutionMatrix;
+BoardGen.prototype.checkSolution= function(solutionMatix){
+  this.solution = solutionMatrix;
   var rowChecker = {};
   var boxChecker = {};  // { boxnum : {}}
+  var colChecker = {};
   var boxNumber;
   var cellValue;
-  var cellCounter = 1;
+  // var cellCounter = 1;
   for (var row = 0; row <9; row++) {
     checker = {};
     for (var col = 0; col <9; col++) {
-      cellValue = this.board[row][col];
+      cellValue = this.solution[row][col];
       rowChecker[cellValue ] = 1;
       // console.log('check row', row, rowChecker);
+      if(!colChecker.hasOwnProperty(col)) colChecker[col] = {};
+      colChecker[col][cellValue] = 1; 
       //do box checking
       boxNumber = box(row, col);
       // console.log('row',row, 'col', col, 'box', boxNumber);
       // console.log('check box 1', boxChecker[1]);
       if(!boxChecker.hasOwnProperty(boxNumber)) boxChecker[boxNumber] = {};
       boxChecker[boxNumber][cellValue] = 1;
-
-      console.log()
     }
     //check that a row contains 1 thru 9
     if (_.size(rowChecker) < 9) {
       console.log('conflict in row', row);
+      this.message = 'conflict in row' + row;
       i = 100;  //abort abort
     }
     
@@ -148,7 +157,18 @@ BoardGen.prototype.checkConflicts = function(){
       boxChecker = {};
     }
   }
+
+  //check that columns contain 1 thru 9
+  for (var col in colChecker){
+    if(_.size(colChecker[col]) < 9) {
+      console.log('conflict in col', col, 'abort!', colChecker[col]);
+    } 
+  }
+
+  // this.message = 'finished';
 };
+
+
 var boxcalledcounter = 0;
 function box(row, col){
   // boxcalledcounter++;
@@ -173,22 +193,22 @@ function box(row, col){
 }
 
 
-BoardGen.prototype.colConflict = function(){
-  var checker;
-  var col;
-  for (var col = 0; col < 10; col++ ){ //col iterator
-    checker = {};
-    col = i;
-    for (var j = 0; j < 81; j+=9){
-      // console.log('cell by col', i+j, cellValues[i+j]);
-      checker[cellValues[i+j]] = 1;
-    }
-    if (_.size(checker) < 9) {
-      console.log('col', col, 'LOSER');
-      i=100;
-    }
-  }  
-};
+// BoardGen.prototype.colConflict = function(){
+//   var checker;
+//   var col;
+//   for (var col = 0; col < 10; col++ ){ //col iterator
+//     checker = {};
+//     col = i;
+//     for (var j = 0; j < 81; j+=9){
+//       // console.log('cell by col', i+j, cellValues[i+j]);
+//       checker[cellValues[i+j]] = 1;
+//     }
+//     if (_.size(checker) < 9) {
+//       console.log('col', col, 'LOSER');
+//       i=100;
+//     }
+//   }  
+// };
 
 // BoardGen.prototype.boxConflict = function(){
 //   var checker = {};
